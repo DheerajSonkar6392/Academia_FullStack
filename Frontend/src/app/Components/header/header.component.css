@@ -162,3 +162,15 @@ a:hover {
 .btn-white:hover {
   background-color: #e5e5e5;
 }
+
+/* Profile avatar button */
+.profile-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+/* Dropdown overrides to ensure visibility over hero */
+.profile-menu {
+  z-index: 1050;
+  min-width: 220px;
+}

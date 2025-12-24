@@ -12,51 +12,82 @@ import { LayoutComponent } from './Components/layout/layout.component';
 import { UploadPapersComponent } from './Components/upload-papers/upload-papers.component';
 import { TestComponent } from './Components/test/test.component';
 import { CoursesComponent } from './Components/courses/courses.component';
+import { LoginComponent } from './Components/login/login.component';
+import { AdminGuard } from './Services/auth/admin.guard';
+import { AuthGuard } from './Services/auth/auth.guard';
+import { RegisterComponent } from './Components/register/register.component';
+import { MyCoursesComponent } from './Components/my-courses/my-courses.component';
+import { AdminPapersComponent } from './Components/admin-papers/admin-papers.component';
 
 const routes: Routes = [
   {
-    path: 'layout',
-    component: LayoutComponent,
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'layout',
+    component: LayoutComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'cards',
     component: CardsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'center-cards',
     component: CenterCardsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'papers',
     component: PapersComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'upload_papers',
     component: UploadPapersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin/papers',
+    component: AdminPapersComponent,
+    canActivate: [AdminGuard]
   },
   {
     path: 'notes_dashboard',
     component: NotesDashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'papers_dashboard',
     component: PaperDashboardComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'test',
     component: TestComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'courses',
     component: CoursesComponent,
+    canActivate: [AuthGuard]
   },
-
-  
-
+  {
+    path: 'my-courses',
+    component: MyCoursesComponent,
+    canActivate: [AuthGuard]
+  },
 ];
 @NgModule({
   imports: [

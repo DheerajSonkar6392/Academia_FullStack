@@ -25,9 +25,14 @@ public class FileUploadController {
             @RequestParam(value = "courseName", required = false) String courseName
     ) {
         try {
+            System.out.println("[UPLOAD] Received file: " + file.getOriginalFilename() +
+                               " | size: " + file.getSize() + " bytes");
             Map<String, Object> resp = fileUploadService.upload(file, semester, year, courseName);
+            System.out.println("[UPLOAD] Saved with id: " + resp.get("id"));
             return ResponseEntity.ok(resp);
         } catch (Exception e) {
+            System.err.println("[UPLOAD] Failed: " + e.getMessage());
+            e.printStackTrace();
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
     }

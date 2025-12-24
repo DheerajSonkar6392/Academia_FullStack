@@ -17,7 +17,13 @@ import { LayoutComponent } from './Components/layout/layout.component';
 import { UploadPapersComponent } from './Components/upload-papers/upload-papers.component';
 import { TestComponent } from './Components/test/test.component';
 import { CoursesComponent } from './Components/courses/courses.component';
-
+import { LoginComponent } from './Components/login/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './Services/auth/auth.interceptor';
+import { RegisterComponent } from './Components/register/register.component';
+import { MyCoursesComponent } from './Components/my-courses/my-courses.component';
+import { AdminPapersComponent } from './Components/admin-papers/admin-papers.component';
+import { ToastComponent } from './Components/toast/toast.component'; // <-- NEW
 
 @NgModule({
   declarations: [
@@ -33,7 +39,13 @@ import { CoursesComponent } from './Components/courses/courses.component';
     LayoutComponent,
     UploadPapersComponent,
     TestComponent,
-    CoursesComponent],
+    CoursesComponent,
+    LoginComponent,
+    RegisterComponent,
+    MyCoursesComponent,
+    AdminPapersComponent
+    // ToastComponent REMOVED from declarations
+  ],
 
   imports: [
     BrowserModule,
@@ -41,11 +53,13 @@ import { CoursesComponent } from './Components/courses/courses.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastComponent // <-- ADDED here (standalone import)
   ],
 
-
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })

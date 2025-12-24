@@ -27,4 +27,7 @@ public class UploadedFile {
     private String courseName;
 
     private LocalDateTime uploadedAt = LocalDateTime.now();
+
+    @Enumerated(EnumType.STRING)
+    private UploadStatus status = UploadStatus.PENDING;
 }
